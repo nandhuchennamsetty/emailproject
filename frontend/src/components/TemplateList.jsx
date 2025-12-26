@@ -12,6 +12,7 @@ export default function TemplateList({ onSelect, onEdit }) {
   const handleDelete = async (id) => {
     try {
       const res = await api.delete(`/templates/${id}`);
+      console.log('Delete response:', res);
       setIsDelete(!isDelete);
     } catch (error) {
       console.error('Error deleting template:', error);

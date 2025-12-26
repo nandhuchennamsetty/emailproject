@@ -4,7 +4,7 @@ import { api } from '../services/api';
 export default function SendEmail({ selectedTemplate }) {
   const [group, setGroup] = useState('');
   const [groupsData, setGroupsData] = useState([]);
-  const [error, setError] = useState('');
+  // const [error, setError] = useState('');
 
   useEffect(() => {
     getAllUniqueGroups();
@@ -22,10 +22,10 @@ export default function SendEmail({ selectedTemplate }) {
   const sendEmails = async () => {
     try {
       if (!selectedTemplate) return alert('Select a template first');
-      if (!group) {
-        setError('* Please select a group');
-        return;
-      }
+      // if (!group) {
+      //   setError('* Please select a group');
+      //   return;
+      // }
       const response = await api.post('/emails/send', {
         templateId: selectedTemplate._id,
         group,
