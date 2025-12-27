@@ -4,7 +4,6 @@ import { api } from '../services/api';
 export default function SendEmail({ selectedTemplate }) {
   const [group, setGroup] = useState('');
   const [groupsData, setGroupsData] = useState([]);
-  // const [error, setError] = useState('');
 
   useEffect(() => {
     getAllUniqueGroups();
@@ -22,16 +21,12 @@ export default function SendEmail({ selectedTemplate }) {
   const sendEmails = async () => {
     try {
       if (!selectedTemplate) return alert('Select a template first');
-      // if (!group) {
-      //   setError('* Please select a group');
-      //   return;
-      // }
       const response = await api.post('/emails/send', {
         templateId: selectedTemplate._id,
         group,
       });
       if (response.data?.status === 201 || response.status === 200) {
-        alert('Emails sent successfully');
+        alert('Emails sent successfully,Please check your Spam folder ...');
       }
     } catch (error) {
       console.error('Error sending emails:', error);
@@ -49,7 +44,6 @@ export default function SendEmail({ selectedTemplate }) {
         onChange={(e) => setGroup(e.target.value)}
         style={{
           marginBottom: 10,
-          // width: '50%',
           padding: '8px',
           borderRadius: '4px',
           border: '1px solid #ccc',
@@ -63,8 +57,6 @@ export default function SendEmail({ selectedTemplate }) {
           </option>
         ))}
       </select>
-      {/* {error && <p style={{ color: 'red' }}>{error}</p>}
-      <br /> */}
       <button onClick={sendEmails} disabled={!selectedTemplate || !group}>
         Send Emails
       </button>

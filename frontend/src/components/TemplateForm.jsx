@@ -19,9 +19,17 @@ export default function TemplateForm({ refresh, editTemplate }) {
   const submitHandler = async () => {
     try {
       if (editTemplate?._id) {
-        await api.put(`/templates/${editTemplate._id}`, template);
+        const res = await api.put(`/templates/${editTemplate._id}`, template);
+        if (res.data?.success) {
+          console.log('Template updated successfully');
+          alert('Template updated successfully');
+        }
       } else {
-        await api.post('/templates', template);
+        const res = await api.post('/templates', template);
+        if (res.data?.success) {
+          console.log('Template created successfully');
+          alert('Template created successfully');
+        }
       }
       setTemplate({ name: '', subject: '', body: '' });
       refresh();

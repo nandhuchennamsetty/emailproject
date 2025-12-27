@@ -1,12 +1,23 @@
 import { useEffect, useState } from 'react';
-import {api} from '../services/api';
+import { api } from '../services/api';
 
 export default function ContactList() {
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
-    api.get('/contacts/allContacts').then((res) => setContacts(res.data));
+    getAllContacts();
   }, []);
+  
+  const getAllContacts = async () => {
+    try {
+      const res = await api.get('/contacts/allContacts');
+      if (res.data?.success) {
+        setContacts(res.data?.data || []);
+      }
+    } catch (error) {
+      console.error('Error fetching contacts:', error?.message);
+    }
+  };
 
   return (
     <div className='card'>

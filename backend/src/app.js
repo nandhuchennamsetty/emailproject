@@ -10,6 +10,7 @@ app.use(
 );
 app.use(express.json());
 
+app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/templates', require('./routes/template.routes'));
 app.use('/api/emails', require('./routes/email.routes'));
 app.use('/api/contacts', require('./routes/contact.routes'));

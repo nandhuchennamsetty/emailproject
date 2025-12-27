@@ -4,5 +4,6 @@ export const api = axios.create({
   baseURL: 'https://emailproject-8zv0.onrender.com/api',
   headers: {
     'Content-Type': 'application/json',
+    Authorization: `Bearer ${localStorage.getItem('token') || ''}`,
   },
 });

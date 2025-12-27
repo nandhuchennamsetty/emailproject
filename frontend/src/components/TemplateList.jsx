@@ -6,8 +6,19 @@ export default function TemplateList({ onSelect, onEdit }) {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
   const [isDelete, setIsDelete] = useState(false);
   useEffect(() => {
-    api.get('/templates').then((res) => setTemplates(res.data));
+    handleGetTemplates();
   }, [isDelete]);
+
+  const handleGetTemplates = async () => {
+    try {
+      const res = await api.get('/templates');
+      if (res.data?.success) {
+        setTemplates(res.data?.data || []);
+      }
+    } catch (error) {
+      console.error('Error fetching templates:', error?.message);
+    }
+  };
 
   const handleDelete = async (id) => {
     try {

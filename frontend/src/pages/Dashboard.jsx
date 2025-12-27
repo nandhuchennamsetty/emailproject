@@ -11,6 +11,18 @@ export default function Dashboard() {
 
   return (
     <div className='dashboard'>
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <button
+          className='logout-button'
+          onClick={() => {
+            localStorage.removeItem('token');
+            window.location.reload();
+          }}
+        >
+          Logout
+        </button>
+      </div>
+
       {/* STEP 1 */}
       <section className='section'>
         <h2>① Create or Select Template</h2>

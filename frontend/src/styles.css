@@ -1,3 +1,6 @@
+*{
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -81,6 +84,33 @@ button:disabled {
   border-bottom: 1px solid #ddd;
   cursor: pointer;
 }
+.logout-button {
+  background-color: #ef4444;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  width: 100px;
+  max-width: 150px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.logout-button:hover {
+  background-color: #dc2626;
+}
+
+.logout-button:active {
+  transform: scale(0.96);
+}
+
+.logout-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.4);
+}
+
 
 @media (min-width: 768px) {
   .grid {
